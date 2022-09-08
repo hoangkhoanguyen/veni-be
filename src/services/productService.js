@@ -18,7 +18,8 @@ const getProducts = async (id) => {
         console.log('service',result)
         return {
             errCode: 0,
-            data: result
+            data: result,
+            url: process.env.URL_WEBSITE
         }
     } catch (error) {
         console.log(error)
