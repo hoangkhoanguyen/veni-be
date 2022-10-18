@@ -12,11 +12,18 @@ require('dotenv').config() // help run process.env
 let app = express()
 
 // app.use(bodyParser.json())
+const  whitelist = [process.env.URL_WEBSITE, 'http://localhost:3000']
 const corsOptions = {
-    origin: process.env.URL_WEBSITE,
+    origin: function (origin, callback) {
+      if (whitelist.indexOf(origin) !== -1) {
+        callback(null, true)
+      } else {
+        callback(new Error('Not allowed by CORS'))
+      }
+    },
     credentials: true,            //access-control-allow-credentials:true
     optionSuccessStatus: 200
-}
+  }
 app.use(cors(corsOptions));
 console.log(process.env.URL_WEBSITE)
 app.use(bodyParser.json({ limit: '50mb' }))
