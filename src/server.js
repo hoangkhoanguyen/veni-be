@@ -12,7 +12,7 @@ require('dotenv').config() // help run process.env
 let app = express()
 
 // app.use(bodyParser.json())
-const  whitelist = [process.env.URL_WEBSITE, 'http://localhost:3000']
+const  whitelist = [process.env.URL_WEBSITE, 'http://localhost:3000', process.env.URL_WEBSITE_MANAGE]
 const corsOptions = {
     origin: function (origin, callback) {
       if (whitelist.indexOf(origin) !== -1) {
